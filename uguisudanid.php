@@ -270,7 +270,7 @@ class DataStoreProxy {
     protected $bucketProxies;
     protected $metafile;
 
-    public function __construct($reactor, $store, $journal, $metafile, $interval = 10.) {
+    public function __construct($reactor, $store, $journal, $metafile, $interval = 30.) {
         $this->reactor = $reactor;
         $this->store = $store;
         $this->journal = $journal;
