@@ -16,6 +16,7 @@ class Journal {
     public function __construct($file) {
         $this->file = $file;
         $this->f = fopen($file, 'a');
+        fseek($this->f, 0, SEEK_END);
     }
 
     public function getPosition() {
