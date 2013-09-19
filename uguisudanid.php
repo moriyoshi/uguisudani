@@ -85,7 +85,7 @@ class BucketContainer {
             $bags = &$this->index[$fieldName];
             if (!isset($bags))
                 $bags = array();
-            $h = substr($fieldData, 16);
+            $h = substr($fieldData, 0, 16);
             $bag = &$bags[$h];
             if (!isset($bag))
                 $bag = array();
@@ -99,7 +99,7 @@ class BucketContainer {
             $bags = &$this->index[$fieldName];
             if (!isset($bags))
                 continue;
-            $h = substr($fieldData, 16);
+            $h = substr($fieldData, 0, 16);
             $bag = &$bags[$h];
             if (isset($bag))
                 continue;
@@ -112,8 +112,9 @@ class BucketContainer {
         foreach ($cond as $fieldName => $fieldData) {
             if (isset($this->index[$fieldName])) {
                 $bags = $this->index[$fieldName];
-                if (isset($bags[substr($fieldData, 16)])) {
-                    $bag = $bags[substr($fieldData, 16)];
+                $h = substr($fieldData, 0, 16);
+                if (isset($bags[$h])) {
+                    $bag = $bags[$h];
                     foreach ($bag as &$datum) {
                         if ($datum[$fieldName] == $fieldData)
                             $idSet[$datum['_id']] = true;
