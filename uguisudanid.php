@@ -258,7 +258,7 @@ class BucketProxy {
             $meta['logPosition'],
             $this->bucket->name);
         $player->play();
-        $this->lastSavedLogPosition = $player->getPosition();
+        $this->lastSavedLogPosition = $meta['logPosition'];
     }
 }
 
