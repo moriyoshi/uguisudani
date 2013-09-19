@@ -659,7 +659,7 @@ class Reactor {
                 usleep($wait * 1000000);
             } else {
                 $efds = NULL;
-                $wait_sec = (int)$wait;
+                $wait_sec = max((int)$wait, 0.);
                 $wait_usec = max(($wait - (float)$wait_sec) * 1000000., 0.);
                 $n = stream_select($rfds, $wfds, $efds, $wait_sec, $wait_usec);
             }
