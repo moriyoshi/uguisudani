@@ -249,7 +249,10 @@ class BucketProxy {
     }
 
     public function load() {
-        if (($serializedMeta = @file_get_contents($this->metafile)) === false)
+        if (!file_exists($this->metafile)) {
+            return;
+        }
+        if (($serializedMeta = file_get_contents($this->metafile)) === false)
             throw new IOError("Could not read from \"{$this->metafile}\"");
         $meta = unserialize($serializedMeta);
         $this->bucket->load();
